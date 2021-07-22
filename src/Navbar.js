@@ -3,8 +3,8 @@ const Navbar = ( /* props */ ) => {
         <nav>
             <h1>Navigation</h1>
             <div className='links'>
-                <a href='#'>Home</a>
-                <a href='/create'>New Blog</a>
+                <a href='/'>Home</a>
+                <a href='/'>New Blog</a>
             </div>
         </nav>
     )
