@@ -1,4 +1,8 @@
 div {
   font-family: arial;
-  background-color: yellow;
+  background-color: whitesmoke;
+}
+
+.App {
+  color: darkslategray;
 }
