@@ -1,11 +1,10 @@
 import React from "react";
+import BlogList from './BlogList'
 
 /*
  * The Home component contains all of the content associated with the homepage of the app.
  */
 const Home = () => {
-
-
     const [blogs, setBlogs] = React.useState([
         {title: 'Blog 1', body: 'red', author: 'Mario', id: 1},
         {title: 'Blog 2', body: 'yellow', author: 'Yoshi', id: 2},
@@ -14,13 +13,7 @@ const Home = () => {
 
     return (
         <div className='Home'>
-            {blogs.map((blog) => (
-                <div className='blog-preview' key={blog.id}>
-                    <h2>{blog.title}</h2>
-                    <p>Written by {blog.author}</p>
-                    <p>{blog.body}</p>
-                </div>
-            ))}
+            <BlogList blogs={blogs} />
         </div>
     )
 }
