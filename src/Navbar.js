@@ -1,6 +1,6 @@
 const Navbar = ( /* props */ ) => {
     return (
-        <nav>
+        <nav className='navbar'>
             <h1>Navigation</h1>
             <div className='links'>
                 <a href='/'>Home</a>
@@ -9,5 +9,4 @@ const Navbar = ( /* props */ ) => {
         </nav>
     )
 }
-
 export default Navbar;
