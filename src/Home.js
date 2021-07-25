@@ -11,9 +11,15 @@ const Home = () => {
         {title: 'Blog 3', body: 'green', author: 'Luigi', id: 3}
     ]);
 
+    const handleDelete = (id) => {
+        // Filter for items that do not match the id
+        const newBlogs = blogs.filter(blog => blog.id !== id);
+        setBlogs(newBlogs);
+    }
+
     return (
         <div className='Home'>
-            <BlogList blogs={blogs} />
+            <BlogList blogs={blogs} title='All Blogs' handleDelete={handleDelete}/>
         </div>
     )
 }
