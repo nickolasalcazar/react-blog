@@ -5,13 +5,7 @@ import BlogList from './BlogList'
  * The Home component contains all of the content associated with the homepage of the app.
  */
 const Home = () => {
-    const [blogs, setBlogs] = useState([
-        {title: 'Blog 1', body: 'red', author: 'Mario', id: 1},
-        {title: 'Blog 2', body: 'yellow', author: 'Yoshi', id: 2},
-        {title: 'Blog 3', body: 'green', author: 'Luigi', id: 3}
-    ]);
-
-    const [name, setName] = useState('Mario');
+    const [blogs, setBlogs] = useState(null);
 
     const handleDelete = (id) => {
         // Filter for items that do not match the id
@@ -20,14 +14,18 @@ const Home = () => {
     }
 
     useEffect(() => {
-        console.log('useEffect called');
-    }, [name]);
+        fetch("http://localhost:8000/blogs")
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                setBlogs(data);
+            })
+            .catch(error => console.log(error));
+    }, []);
 
     return (
         <div className='Home'>
-            <BlogList blogs={blogs} title='All Blogs' handleDelete={handleDelete}/>
-            <button onClick={() => setName('Luigi')}>Change name</button>
-            <p>{name}</p>
+            {blogs && <BlogList blogs={blogs} title='All Blogs' handleDelete={handleDelete}/>}
         </div>
     )
 }
