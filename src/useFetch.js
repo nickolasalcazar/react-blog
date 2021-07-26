@@ -1,30 +1,27 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const useFetch = (url) => {
-    const [data, setData] = useState(null);             // State for page content
-    const [isPending, setIsPending] = useState(true);   // State for pending loading data
-    const [error, setError] = useState(null);           // State for fetch error
+    const [data, setData] = useState(null);
+    const [isPending, setIsPending] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         fetch(url)
             .then(response => {
-                if (!response.ok) {
-                    console.log('Error:', response.status, response.statusText)
-                    throw new Error('Could not fetch')
-                }
+                if (!response.ok) throw new Error('Error:', response.status, response.statusText)
                 else return response.json();
             })
             .then(data => {
-                console.log(data);
                 setData(data);
                 setIsPending(false);
-                setError(null);
+                setError(false);
             })
             .catch(error => {
                 console.log(error);
                 setError(true);
-            });
-    }, [url]); // Dependency array: will run useFetch is url is changed
-    return { data, isPending, error };  // Can return any value, such as an array, bool, etc.
+                setIsPending(false);
+            })
+    }, [url])
+    return {data, isPending, error};
 }
 export default useFetch;
