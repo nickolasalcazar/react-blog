@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Create = () => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [author, setAuthor] = useState("Mario");
     const [isPending, setIsPending] = useState(false);
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault(); // Prevents page from automatically reloading upon form submission
@@ -14,7 +16,10 @@ const Create = () => {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(blog)
-        }).then(() => setIsPending(false));
+        }).then(() => {
+            setIsPending(false);
+            history.push("/");
+        });
     }
     return (
         <div className="create">
